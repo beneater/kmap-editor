@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="jquery-ui.js"></script>
+	<script type="text/javascript" src="raphael.js"></script>
+	<script type="text/javascript" src="kmap.js"></script>
+	<link rel="stylesheet" href="kmap.css" type="text/css" media="all" />
+</head>
+<body>
+	<div id="sidebar">
+		<p id="ex-title"></p>
+		<table class="exercise-properties" style="display: none;">
+			<tbody>
+				<tr>
+					<td>Status</td>
+					<td>
+						<label for="live_yes">Live</label>
+						<input type="radio" id="live_yes" name="live" value="1" checked="checked"></input>
+						<label for="live_no">Developers only</label>
+						<input type="radio" id="live_no" name="live" value="0"></input><br />
+						<p><em>Non-live exercises are completely hidden from normal users.</em></p>
+					</td>
+				</tr>
+				<tr>
+					<td>Short name</td>
+					<td>
+						<input type="text" name="short_display_name" maxlength="11"></input><br />
+						<p><em>Short name is used in some UI elements that are too small to display the full exercise name (11 chars max).</em></p>
+					</td>
+				</tr>
+				<tr>
+					<td>Horizontal position</td>
+					<td>
+						<span id="h_position">0</span><br />
+						<p><em>Bigger numbers move this exercise to the right on the knowledge map.</em></p>
+					</td>
+				</tr>
+				<tr>
+					<td>Vertical position</td>
+					<td>
+						<span id="v_position">0</span><br />
+						<p><em>Bigger numbers move this exercise down the knowledge map.</em></p>
+					</td>
+				</tr>
+				<tr>
+					<td>Prerequisites</td>
+					<td>
+						<div id="prereqs-container">
+							<div id="prereq-multiplying-fractions">• multiplying_fractions (<a href="#" onclick="deletePrereq(&quot;multiplying_fractions&quot;);return false;">remove</a>)</div>
+						</div>
+						<select id="add-prereq" onchange="addPrereq();" style="width:200px;">
+							<option value=""> - Add prerequisite exercise - </option>
+							<option value="addition_1">Addition 1</option>
+							<option value="addition_2">Addition 2</option>
+							<option value="addition_3">Addition 3</option>
+							<option value="addition_4">Addition 4</option>
+						</select>
+						<br />
+						<p><em>This exercise will be suggested once these prereqs are completed.</em></p>
+					</td>
+				</tr>
+				<tr>
+					<td>Covered exercises</td>
+					<td>
+						<div id="covers-container">
+							<div id="covers-multiplying-fractions">• multiplying_fractions (<a href="#" onclick="deleteCover(&quot;multiplying_fractions&quot;);return false;">remove</a>)</div>
+						</div>
+						<select id="add-cover" onchange="addCover();" style="width:200px;">
+							<option value=""> - Add covered exercise - </option>
+							<option value="addition_1">Addition 1</option>
+							<option value="addition_2">Addition 2</option>
+							<option value="addition_3">Addition 3</option>
+							<option value="addition_4">Addition 4</option>
+						</select>
+						<br />
+						<p><em>Achieving proficiency in this exercise will give proficiency in all covered exercises.</em></p>
+					</td>
+				</tr>
+				<!--
+				<tr>
+					<td>Related Videos</td>
+						<td style="padding-bottom:9px;">
+						<div id="videos-container"></div>
+						<input id="related-videos-input" style="width:200px;" type="text" placeholder="- Add related video -" value="" class="placeholder ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+					</td>
+				</tr>
+				<tr>
+					<td>Description</td>
+					<td>
+						<input type="text" name="description" value="None" maxlength="256"><br>
+						<em>Description text visible in topic listings</em>
+					</td>
+				</tr>
+				<tr>
+					<td>Tags</td>
+					<td>
+						<div class="tags-list"></div>
+						<input class="add-tag" type="text" value="" maxlength="32" placeholder="- Add tag">
+						<a href="javascript:" data-id="add-tag" class="item-action simple-button action-gradient">Add</a>
+					</td>
+				</tr>
+				-->
+			</tbody>
+		</table>
+
+	</div>
+	<div id="container">
+		<div id="map">
+		</div>
+	</div>
+</body>
+</html>

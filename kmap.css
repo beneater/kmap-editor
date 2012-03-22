@@ -1,0 +1,79 @@
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    margin: 0;
+    color: #444;
+}
+
+div#container {
+    position: absolute;
+    top: 0;
+    left: 400px;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    background: black;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+div#sidebar {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 400px;
+}
+
+div#map {
+    position: relative;
+}
+
+div.exercise {
+    width: 55px;
+    position: absolute;
+    font-family: Helvetica, Arial;
+    font-size: 9px;
+    text-align: center;
+    color: #fff;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: move;
+}
+
+div.exercise-label {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+div.exercise-selected {
+    background: #6495ed
+}
+
+p#ex-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px;
+    padding-bottom: 10px;
+}
+
+.exercise-properties {
+    margin: 10px;
+}
+
+.exercise-properties td:first-child {
+    font-weight: bold;
+    width: 120px;
+}
+
+.exercise-properties td {
+    padding-bottom: 9px;
+    vertical-align: top;
+    font-size: 12px;
+}
