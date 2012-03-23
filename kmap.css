@@ -28,6 +28,12 @@ div#sidebar {
     width: 400px;
 }
 
+div#controls {
+    margin: 10px;
+    position: absolute;
+    bottom: 0;
+}
+
 div#map {
     position: relative;
 }

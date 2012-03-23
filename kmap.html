@@ -7,6 +7,7 @@
 	<script type="text/javascript" src="raphael.js"></script>
 	<script type="text/javascript" src="kmap.js"></script>
 	<link rel="stylesheet" href="kmap.css" type="text/css" media="all" />
+	<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.css">
 </head>
 <body>
 	<div id="sidebar">
@@ -52,10 +53,6 @@
 						</div>
 						<select id="add-prereq" onchange="addPrereq();" style="width:200px;">
 							<option value=""> - Add prerequisite exercise - </option>
-							<option value="addition_1">Addition 1</option>
-							<option value="addition_2">Addition 2</option>
-							<option value="addition_3">Addition 3</option>
-							<option value="addition_4">Addition 4</option>
 						</select>
 						<br />
 						<p><em>This exercise will be suggested once these prereqs are completed.</em></p>
@@ -69,10 +66,6 @@
 						</div>
 						<select id="add-cover" onchange="addCover();" style="width:200px;">
 							<option value=""> - Add covered exercise - </option>
-							<option value="addition_1">Addition 1</option>
-							<option value="addition_2">Addition 2</option>
-							<option value="addition_3">Addition 3</option>
-							<option value="addition_4">Addition 4</option>
 						</select>
 						<br />
 						<p><em>Achieving proficiency in this exercise will give proficiency in all covered exercises.</em></p>
@@ -104,6 +97,9 @@
 				-->
 			</tbody>
 		</table>
+		<div id="controls">
+			<p><button id="show-changes">View list of changes made</button></p>
+		</div>
 
 	</div>
 	<div id="container">
