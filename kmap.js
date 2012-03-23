@@ -1,4 +1,6 @@
 var	DATA_URL = "http://www.khanacademy.org/api/v1/user/exercises";
+var	WORKING_URL = "exercises-new.json";
+//var	WORKING_URL = "http://www.khanacademy.org/api/v1/user/exercises";
 //var	DATA_URL = "http://localhost:8888/api/v1/user/exercises";
 //var	DATA_URL = "exercises.json";
 
@@ -15,16 +17,16 @@ var minH = 0;
 var minV = 0;
 
 function updateCanvasSize() {
-	minV = Math.min.apply( Math, jQuery.map( exercise, function( ex ) { return ex.v } ) ) - 1;
-	minH = Math.min.apply( Math, jQuery.map( exercise, function( ex ) { return ex.h } ) ) - 1;
-	var maxV = Math.max.apply( Math, jQuery.map( exercise, function( ex ) { return ex.v } ) ) + 1;
-	var maxH = Math.max.apply( Math, jQuery.map( exercise, function( ex ) { return ex.h } ) ) + 1;
+	minV = Math.min.apply( Math, jQuery.map( exercise, function( ex ) { return ex.v } ) ) - 10;
+	minH = Math.min.apply( Math, jQuery.map( exercise, function( ex ) { return ex.h } ) ) - 10;
+	var maxV = Math.max.apply( Math, jQuery.map( exercise, function( ex ) { return ex.v } ) ) + 10;
+	var maxH = Math.max.apply( Math, jQuery.map( exercise, function( ex ) { return ex.h } ) ) + 10;
+	console.log( ( maxH - minH + 2 ) * X_SPACING, ( maxV - minV + 2 ) * Y_SPACING );
 	raphael.setSize( ( maxH - minH + 2 ) * X_SPACING, ( maxV - minV + 2 ) * Y_SPACING );
 }
 
 function updateForm( exerciseName ) {
 	if ( exerciseName !== null ) {
-		console.log( exercise[ exerciseName ] );
 		selected = [ exerciseName ];
 		jQuery( ".exercise-properties" ).show();
 		jQuery( "#ex-title" ).html( exercise[ exerciseName ].display_name );
@@ -118,6 +120,15 @@ jQuery( document ).ready( function() {
 		dataType: "json",
 		success: function( data ) {
 			initialModel = data;
+		}
+	});
+
+	jQuery.ajax({
+		url: WORKING_URL,
+		type: "GET",
+		dataType: "json",
+		success: function( data ) {
+			//initialModel = data;
 			jQuery.each( data, function( n, ex ) {
 				if ( ex.exercise_model.summative ) {
 					return;
@@ -133,9 +144,14 @@ jQuery( document ).ready( function() {
 					incoming: [],
 					outgoing: []
 				};
-				jQuery( "<option>" ).attr( "value", ex.exercise ).text( ex.exercise_model.display_name ).appendTo( jQuery( "#add-prereq" ) );
-				jQuery( "<option>" ).attr( "value", ex.exercise ).text( ex.exercise_model.display_name ).appendTo( jQuery( "#add-cover" ) );
 			});
+			var sortedExercises = jQuery.map( data, function( ex ) { if ( !ex.exercise_model.summative ) { return ex.exercise; } } );
+			sortedExercises.sort();
+			jQuery.each( sortedExercises, function( n, ex ) {
+				jQuery( "<option>" ).attr( "value", ex ).text( ex ).appendTo( jQuery( "#add-prereq" ) );
+				jQuery( "<option>" ).attr( "value", ex ).text( ex ).appendTo( jQuery( "#add-cover" ) );
+			});
+
 
 			updateCanvasSize();
 
@@ -248,7 +264,7 @@ jQuery( document ).ready( function() {
 
 	jQuery( "button#show-changes" ).click( function() {
 		changeList.empty();
-		var newModel = jQuery.extend( {}, initialModel );
+		var newModel = jQuery.extend( true, {}, initialModel );
 		jQuery.each( exercise, function( n, ex ) {
 			var changes = "";
 			if ( initialModel[ ex.n ].exercise_model.v_position !== ex.v ) {
