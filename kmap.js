@@ -1,7 +1,6 @@
 var	DATA_URL = "http://www.khanacademy.org/api/v1/user/exercises";
 //var	DATA_URL = "http://localhost:8888/api/v1/user/exercises";
 //var	DATA_URL = "exercises.json";
-//var	DATA_URL = "foo.json";
 
 var X_SPACING = 65;
 var Y_SPACING = 73;
@@ -278,7 +277,8 @@ jQuery( document ).ready( function() {
 		});
 
 		exportTab.empty();
-		jQuery( "<textarea>" ).css({ width: "100%", height: "100%" }).text( JSON.stringify( newModel ) ).appendTo( exportTab );
+		jQuery( "<textarea>" ).css({ width: "100%", height: "90%" }).text( JSON.stringify( newModel ) ).appendTo( exportTab );
+		jQuery("<p>").append( jQuery( "<a>" ).attr( "href", "data:application/json;charset=utf-8," + escape(JSON.stringify( newModel )) ).text( "Right-click to download" ) ).appendTo( exportTab );
 		changeWindow.dialog( "open" );
 		return false;
 	});
